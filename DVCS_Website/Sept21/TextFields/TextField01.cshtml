@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Field Demo 1</title>
+</head>
+<body>
+    <!--Create an HTML form with an text field
+        for the user to enter their favorite course number.
+        Using RAZOR syntax, write the code to process
+        the form submission as follows:
+        1) If the course number is CPSC1517 then
+            output the message "That is my favorite course too"
+           otherwise output the message
+            "Try again. That is not an acceptable answer"
+         -->
+    @{
+        string courseno = Request.Form["CourseNo"];
+        if (IsPost && !string.IsNullOrWhiteSpace(courseno))
+        {
+            if (courseno.ToLower() == "cpsc1517")
+            {
+                <p>@courseno is also my favorite course</p>
+            }
+            else
+            {
+                <p>
+                    @courseno is not an acceptable answer.
+                    Please try again.
+                </p>
+            }
+        }
+    }
+    <form method="post">
+        Course No:
+        <input type="text" name="courseno" />
+        <input type="submit" value="submit" />
+    </form>
+</body>
+
+
+
+
+
+
+
+</html>

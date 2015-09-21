@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World Page</title>
+</head>
+<body>
+    <h1>Hello World Page</h1>
+    <p>The time is @DateTime.Now</p>
+    @{
+        string username = Request.Form["username"];
+        if (IsPost)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                <p>Please enter your name</p>
+            }
+            else
+            {
+                <p>Welcome @username!</p>
+            }
+        }
+    }
+    <form method="post">
+        Enter your name:
+        <input type="text" name="username" />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+
+
+</html>
