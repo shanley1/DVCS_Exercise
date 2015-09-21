@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Single Selection Checkbox</title>
+</head>
+<body>
+    @{
+        string agreement = Request.Form["agree"];
+        if (IsPost)
+        {
+            if (agreement == null)
+            {
+                <p>You DONT' agree</p>
+            }
+            else
+            {
+                <p>You agree</p>
+            }
+        }
+    }
+    <form method="post">
+        <input type="checkbox" name="agree" value="no" />
+        I agree with license agreement.
+        <br />
+        <input type="submit" value="submit" />
+    </form>
+</body>
+</html>
