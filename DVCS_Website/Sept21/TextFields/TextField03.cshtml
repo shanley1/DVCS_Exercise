@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Field Demo 3</title>
+</head>
+<body>
+    @{
+        string numberOfPicks = Request.Form["numberOfQuickPicks"];
+        if (IsPost)
+        {
+            int numberOfQuickPicks = int.Parse(numberOfPicks);
+            Random numberGenerator = new Random();
+            for (int counter = 1; counter <= numberOfQuickPicks; counter++)
+            {
+                <span>Quick Pick #@counter:</span>
+                int[] numberArray = new int[6];
+                for (int index = 0; index < numberArray.Length; )
+                {
+                    int randomNumber = numberGenerator.Next(1, 50);
+                    if (!numberArray.Contains(randomNumber))
+                    {
+                        numberArray[index] = randomNumber;
+                        index++;
+                    }
+                }
+                Array.Sort(numberArray);
+                for (int index = 0; index < numberArray.Length; index++)
+                {
+                    <span>@numberArray[index] &nbsp;</span>
+                }
+                <br />
+            }
+        }
+    }
+    <form method="post">
+        Number of 649 quick picks:
+        <input type="text" name="numberOfQuickPicks"
+               required="required" />
+        <input type="submit" value="Generate" />
+    </form>
+</body>
+</html>
