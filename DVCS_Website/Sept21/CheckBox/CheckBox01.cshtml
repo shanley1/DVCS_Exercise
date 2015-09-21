@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi Selection CheckBox Demo</title>
+</head>
+<body>
+    <h1>My Game Consoles</h1>
+    @{
+        // retreive the form field values
+        // for a multi-selection checkbox the value submitted
+        // is a single string value where each selection value
+        // is separated by a comma
+        //      value1, value2, value3, ...
+        // for example: PlayStation 4, XBox One
+        string gameconsoles = Request.Form["gameconsoles"];
+        if (IsPost)
+        {
+            // check if at least one game console was selected
+            if (string.IsNullOrWhiteSpace(gameconsoles))
+            {
+                <p>You are not a gamer, now go back to work</p>
+            }
+            else
+            {
+                // split the string into an array of string
+                // using the comma character
+                string[] gameConsoleArray = gameconsoles.Split(',');
+                <p>You own the following game consoles:</p>
+                <ul>
+                    @foreach (string console in gameConsoleArray)
+                    {
+                        <li>@console</li>
+                    }
+                </ul>
+            }
+        }
+    }
+    <form method="post">
+        <div>
+            Select all the Game Consoles
+            you have owned: <br />
+            <input type="checkbox"
+                   name="gameconsoles"
+                   value="Playstation 4" />
+            Playstation 4 <br />
+            <input type="checkbox"
+                   name="gameconsoles"
+                   value="XBox One" />
+            XBox One <br />
+            <input type="checkbox"
+                   name="gameconsoles"
+                   value="Nintendo Wii U" />
+            Nintendo Wii U <br />
+            <input type="submit" value="Submit" />
+
+        </div>
+    </form>
+</body>
+</html>
